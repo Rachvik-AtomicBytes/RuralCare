@@ -26,7 +26,7 @@ class BlogPostItem(OneLineAvatarIconListItem):
         self.on_release = self.show_full_post
 
        
-        self.bg_color = get_color_from_hex("#FFFFFF")  # White
+        self.bg_color = get_color_from_hex("#FFFFFF")  
 
     def show_full_post(self, *args):
         dialog = MDDialog(
@@ -44,13 +44,13 @@ class BlogPostItem(OneLineAvatarIconListItem):
     def on_touch_down(self, touch):
         if self.collide_point(*touch.pos):
             
-            self.bg_color = get_color_from_hex("#CCCCCC")  # Light gray
+            self.bg_color = get_color_from_hex("#CCCCCC")  
         return super().on_touch_down(touch)
 
     def on_touch_up(self, touch):
         if self.collide_point(*touch.pos):
             
-            self.bg_color = get_color_from_hex("#FFFFFF")  # White
+            self.bg_color = get_color_from_hex("#FFFFFF")  
         return super().on_touch_up(touch)
 
 class NutritionBlogScreen(MDScreen):
@@ -72,9 +72,9 @@ class NutritionBlogScreen(MDScreen):
             halign="center",
             font_style="H5",
             theme_text_color="Custom",
-            text_color=(1, 1, 1, 1),  # White color
+            text_color=(1, 1, 1, 1),  
             bold=True,
-            font_size="150sp",  # Larger font size
+            font_size="150sp",  
         )
 
         
@@ -84,10 +84,10 @@ class NutritionBlogScreen(MDScreen):
             halign="center",
             font_style="Body1",
             theme_text_color="Custom",
-            text_color=(1, 1, 1, 1),  # White color
+            text_color=(1, 1, 1, 1), 
             bold=True,
             size_hint_y=None,
-            height="150dp"  # Fixed height for additional text
+            height="150dp"  
         )
 
         new_post_button = MDRaisedButton(
@@ -121,7 +121,7 @@ class NutritionBlogScreen(MDScreen):
             type="custom",
             content_cls=BoxLayout(orientation="vertical", spacing="12dp", padding="12dp", size_hint_y=None, height="600dp"),
             size_hint=(None, None),
-            size=("400dp", "1000dp"),  # Set the size of the dialog
+            size=("400dp", "1000dp"),  
             buttons=[
                 MDRaisedButton(text="Cancel", on_release=lambda x: dialog.dismiss()),
                 MDRaisedButton(
