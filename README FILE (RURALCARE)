@@ -1,0 +1,6 @@
+README FILE (RURALCARE)
+
+HOW TO RUN CODE:
+Save all codes, images, and databases (csv files) in the same folder without any alterations to name and code
+The Ruralcare.py file is the homepage from where all other codes are linked. You can refer to the video to understand how it works. 
+Install all required modules in terminal (mentioned in the codes itself) For example: sklearn, kivy etc.
