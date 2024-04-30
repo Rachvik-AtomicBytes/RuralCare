@@ -43,7 +43,7 @@ class BlogPostItem(OneLineAvatarIconListItem):
 
     def on_touch_down(self, touch):
         if self.collide_point(*touch.pos):
-            # Change the background color when the post is touched
+            
             self.bg_color = get_color_from_hex("#CCCCCC")  # Light gray
         return super().on_touch_down(touch)
 
@@ -95,7 +95,7 @@ class NutritionBlogScreen(MDScreen):
         )
         new_post_button.bind(on_release=self.show_post_input)
         
-        # Center the button horizontally
+        
         button_layout = BoxLayout(orientation="horizontal", size_hint_y=None, height="48dp", padding="10dp")
         button_layout.add_widget(new_post_button)
 
@@ -103,7 +103,7 @@ class NutritionBlogScreen(MDScreen):
         for post in self.blog_posts:
             self.posts_list.add_widget(BlogPostItem(**post))
         
-        # Add widgets to layout
+        
         layout.add_widget(label)
         layout.add_widget(additional_text)
         layout.add_widget(self.posts_list)
