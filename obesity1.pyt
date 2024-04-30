@@ -13,7 +13,7 @@ from kivy.core.window import Window
 from kivy.uix.scrollview import ScrollView
 from kivy.uix.popup import Popup
 
-Window.clearcolor = (0.2, 0.2, 0.2, 1)  # Set a dark background color
+Window.clearcolor = (0.2, 0.2, 0.2, 1)  
 
 class PredictionPopup(Popup):
      def __init__(self, prediction, message, **kwargs):
