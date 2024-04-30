@@ -25,7 +25,7 @@ class BlogPostItem(OneLineAvatarIconListItem):
         self.text = f"{self.title} - {self.author} ({self.date_published})"
         self.on_release = self.show_full_post
 
-        # Set the default background color
+       
         self.bg_color = get_color_from_hex("#FFFFFF")  # White
 
     def show_full_post(self, *args):
@@ -36,7 +36,7 @@ class BlogPostItem(OneLineAvatarIconListItem):
             auto_dismiss=True,
         )
 
-        # Set the background color of the dialog
+        
         dialog.background_color = self.bg_color
 
         dialog.open()
