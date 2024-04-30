@@ -177,7 +177,7 @@ class MapScreen(BoxLayout):
 
     def get_city_coordinates(self, city):
         try:
-            city_data = pd.read_csv('worldcities.csv')  # Replace with your CSV file path
+            city_data = pd.read_csv('worldcities.csv')  
             city_info = city_data.loc[city_data['city'].str.lower() == city.lower()]
             if not city_info.empty:
                 return {'latitude': city_info.iloc[0]['latitude'], 'longitude': city_info.iloc[0]['longitude']}
