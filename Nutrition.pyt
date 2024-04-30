@@ -49,7 +49,7 @@ class BlogPostItem(OneLineAvatarIconListItem):
 
     def on_touch_up(self, touch):
         if self.collide_point(*touch.pos):
-            # Restore the default background color when touch is released
+            
             self.bg_color = get_color_from_hex("#FFFFFF")  # White
         return super().on_touch_up(touch)
 
@@ -63,7 +63,7 @@ class NutritionBlogScreen(MDScreen):
     def build_ui(self):
         layout = BoxLayout(orientation="vertical")
         
-        # Set background image
+        
         background = Image(source="greenimage.jpg", allow_stretch=True, keep_ratio=False)
         self.add_widget(background)
 
@@ -77,7 +77,7 @@ class NutritionBlogScreen(MDScreen):
             font_size="150sp",  # Larger font size
         )
 
-        # Additional text
+        
         additional_text = MDLabel(
             text=("Here you can write blogs and stories that may be helpful to others on this page. "
                   "They may also provide further insights on your text."),
