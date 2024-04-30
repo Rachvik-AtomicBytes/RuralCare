@@ -13,7 +13,7 @@ from geopy.geocoders import Nominatim
 class MyMapView(MapView):
     def on_map_marker_select(self, marker):
         print("Map marker selected:", marker)
-        # Create a popup for the selected marker
+       
         if isinstance(marker, MapMarkerPopup):
             return
         if marker.specialist_type:
@@ -28,7 +28,7 @@ class CustomMapMarkerPopup(MapMarkerPopup):
 
     def update_content(self):
         print("Updating popup content for marker:", self.marker)
-        # Add text to the popup content
+        
         self.content = Label(text=self.marker.name)
 
 class MapScreen(BoxLayout):
@@ -40,18 +40,18 @@ class MapScreen(BoxLayout):
         self.valid_cities = self.load_city_data()
 
     def load_map(self):
-        # Example GPS coordinates (Bengaluru)
+      
         self.latitude = 12.9716
         self.longitude = 77.5946
 
-        # Create a MapView centered around the specified GPS location
+        
         self.mapview = MyMapView(lat=self.latitude, lon=self.longitude, zoom=10)
 
-        # Add a marker at the specified GPS location
+        
         self.marker = MapMarker(lat=self.latitude, lon=self.longitude)
         self.mapview.add_marker(self.marker)
 
-        # Add the MapView to the layout
+       
         self.add_widget(self.mapview)
     
     def add_specialist_button(self):
@@ -68,11 +68,11 @@ class MapScreen(BoxLayout):
         submit_button = Button(text="Submit")
 
         def submit_city():
-            if city_input.text.strip():  # Check if input is not empty
+            if city_input.text.strip(): 
                 self.validate_city(city_input.text.strip(), popup)
 
         def capitalize_first_letter(instance, value):
-            if city_input.text.strip():  # Check if input is not empty
+            if city_input.text.strip():  
                 city_input.text = ' '.join(word.capitalize() for word in city_input.text.split(' '))
 
         city_input.bind(text=capitalize_first_letter)
@@ -88,7 +88,7 @@ class MapScreen(BoxLayout):
 
     def load_city_data(self):
         try:
-            city_data = pd.read_csv('worldcities.csv')  # Replace with your CSV file path
+            city_data = pd.read_csv('worldcities.csv')  
             valid_cities = city_data['city'].str.strip().str.lower().tolist()
             return valid_cities
         except FileNotFoundError:
@@ -104,7 +104,7 @@ class MapScreen(BoxLayout):
     def ask_city_again(self):
         def try_again(popup):
             popup.dismiss()
-            self.ask_city(None)  # Recursive call to ask_city to prompt the user again
+            self.ask_city(None)  
 
         popup_content = BoxLayout(orientation='vertical', padding=10)
         popup = Popup(title='City Not Found', content=popup_content, size_hint=(None, None), size=(400, 200))
@@ -126,10 +126,10 @@ class MapScreen(BoxLayout):
             if specialist_type != "Cardiologist":
                 previous_popup.dismiss() 
 
-        # Close the city input popup
+        
         previous_popup.dismiss()
 
-        # Update map center to the user's typed city
+       
         city_info = self.get_city_coordinates(city)
         if city_info:
             self.latitude = float(city_info['latitude'])
@@ -149,27 +149,25 @@ class MapScreen(BoxLayout):
 
         specialist_popup.open()
         
-        # Example: Generating random locations for specialists around the city
+        
         specialists_locations = self.generate_random_locations(self.latitude, self.longitude)
 
-        # Add markers for each specialist's location on the map
+        
         for location, specialist_type in specialists_locations:
             marker = MapMarker(lat=location[0], lon=location[1])
             marker.specialist_type = specialist_type
             self.mapview.add_marker(marker)
 
     def generate_random_locations(self, latitude, longitude):
-        # Example: Generating random locations for specialists around the city
-        # In a real scenario, you would fetch the actual locations from a database or API
-        # For demonstration purposes, let's generate random locations within a certain range
+        
 
         specialists_locations = []
-        for _ in range(5):  # Generating locations for 5 specialists (adjust as needed)
-            # Generating random offset from the city center
+        for _ in range(5):  
+            
             offset_latitude = random.uniform(-0.05, 0.05)
             offset_longitude = random.uniform(-0.05, 0.05)
 
-            # Calculating specialist's location within the city
+           
             specialist_latitude = latitude + offset_latitude
             specialist_longitude = longitude + offset_longitude
 
@@ -190,7 +188,7 @@ class MapScreen(BoxLayout):
         
     def update_map_center(self, latitude, longitude):
         self.mapview.center_on(latitude, longitude)
-        # Update the position of the marker to the new coordinates
+       
         self.marker.lat = latitude
         self.marker.lon = longitude
 
