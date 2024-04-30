@@ -11,11 +11,11 @@ import sqlite3
 from kivy.uix.popup import Popup
 import os
 
-# Create a connection and cursor
+
 conn = sqlite3.connect('login_A.db')
 c = conn.cursor()
 
-# Create a table if it doesn't exist
+
 c.execute('''CREATE TABLE IF NOT EXISTS users
              (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, email TEXT, password TEXT)''')
 conn.commit()
@@ -25,34 +25,34 @@ class LoginPage(Screen):
         super().__init__(**kwargs)
         layout = RelativeLayout()
 
-        # Background Image
+        
         background = AsyncImage(source="greenimage.jpg",
                                 allow_stretch=True, keep_ratio=False)
         layout.add_widget(background)
 
         box_layout = BoxLayout(orientation='vertical', padding=50, spacing=20)
 
-        # Login Title
+        
         label1 = Label(text="Login", font_size=50, bold=True, color=(0, 0, 0, 1))
         box_layout.add_widget(label1)
 
-        # Welcome label
+        
         self.welcome_label = Label(text="", font_size=18, color=(1, 1, 1, 1), size_hint_y=None, height=50)
         box_layout.add_widget(self.welcome_label)
 
-        # Name input
+       
         self.name_input = TextInput(hint_text="Enter your name", size_hint_y=None, height=50,
                                      background_color=(1, 1, 1, 0.5), foreground_color=(0, 0, 0, 1),
                                      hint_text_color=(0.5, 0.5, 0.5, 1))
         box_layout.add_widget(self.name_input)
 
-        # Email input
+        
         self.email_input = TextInput(hint_text="Enter your email", size_hint_y=None, height=50,
                                       background_color=(1, 1, 1, 0.5), foreground_color=(0, 0, 0, 1),
                                       hint_text_color=(0.5, 0.5, 0.5, 1))
         box_layout.add_widget(self.email_input)
 
-        # Password input
+        
         self.password_input = TextInput(hint_text="Enter Password", size_hint_y=None, height=50,
                                          background_color=(1, 1, 1, 0.5), foreground_color=(0, 0, 0, 1),
                                          hint_text_color=(0.5, 0.5, 0.5, 1), password=True)
@@ -92,7 +92,7 @@ class LoginPage(Screen):
         email = self.email_input.text
         password = self.password_input.text
 
-        # Check if the email and password match any record in the database
+       
         c.execute("SELECT * FROM users WHERE email=? AND password=?", (email, password))
         user = c.fetchone()
 
@@ -113,7 +113,7 @@ class LoginPage(Screen):
         email = self.email_input.text
         password = self.password_input.text
 
-        # Check if the email already exists in the database
+        
         c.execute("SELECT * FROM users WHERE email=?", (email,))
         existing_user = c.fetchone()
 
@@ -177,8 +177,8 @@ class MainScreen(Screen):
                        color=(1, 1, 1, 1), bold=True, halign='center')
         box_layout.add_widget(label2)
 
-        # Adjusting spacing between labels
-        box_layout.spacing = 10  # Set the spacing to 10 pixels
+        
+        box_layout.spacing = 10  
 
         button = Button(text="Get Started", size_hint=(None, None), size=(250, 50),
                         background_color=(0.2, 0.6, 0.2, 1), bold=True, color=(1, 1, 1, 1),
